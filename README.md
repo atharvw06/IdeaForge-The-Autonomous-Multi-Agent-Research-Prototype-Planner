@@ -72,7 +72,7 @@ IdeaForge employs a **Directed Acyclic Graph (DAG)** of four specialized agents,
 
 1.  **Clone the Repository**
     ```bash
-    git clone https://github.com/yourusername/ideaforge.git
+    git clone https://github.com/atharvw06/IdeaForge-The-Autonomous-Multi-Agent-Research-Prototype-Planner.git
     cd ideaforge
     ```
 
