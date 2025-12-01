@@ -6,7 +6,7 @@ class IdeaForgeAgent(ABC):
     Abstract Base Class for all IdeaForge Agents.
     Enforces a standard interface for execution.
     """
-    def __init__(self, api_key, model_name="gemini-1.5-flash"):
+    def __init__(self, api_key, model_name="gemini-2.5-pro"):
         self.api_key = api_key
         self.model_name = model_name
         self.name = "Generic Agent"
@@ -108,13 +108,23 @@ class ProjectManagerAgent(IdeaForgeAgent):
         {context_history}
         
         ROLE: Technical Project Manager.
-        TASK: Create a development timeline.
+        TASK: Synthesize a COMPLETE end-to-end Project Gantt Chart based on the hardware and software requirements identified above.
         
-        CRITICAL OUTPUT FORMAT:
-        Output ONLY a valid JSON list of objects. NO MARKDOWN. NO EXPLANATIONS.
-        Format:
+        CRITICAL INSTRUCTIONS:
+        1. SCOPE: You must plan from "Day 1" to "Final Deployment". Do not stop at just planning.
+        2. MANDATORY PHASES: You must include these distinct phases:
+           - "Requirements & Design" (Week 1-2)
+           - "Procurement & Sourcing" (Wait times for hardware)
+           - "Hardware Assembly" (Wiring, soldering, 3D printing)
+           - "Software Development" (Core logic, AI Model Training)
+           - "System Integration" (Combining HW + SW)
+           - "Testing & Optimization" (Field tests, bug fixes)
+        3. REALISM: Account for lead times (e.g., shipping takes 2 weeks) and debugging.
+        
+        OUTPUT FORMAT (STRICT JSON ONLY):
         [
-            {{"Phase": "Phase Name", "Task": "Specific Task", "Start_Week": int, "End_Week": int}},
+            {{"Phase": "Procurement", "Task": "Order Sensors & Jetson Nano", "Start_Week": 1, "End_Week": 3}},
+            {{"Phase": "Software Dev", "Task": "Computer Vision Model Training", "Start_Week": 3, "End_Week": 6}},
             ...
         ]
         """
